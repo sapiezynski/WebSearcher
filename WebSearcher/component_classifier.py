@@ -45,6 +45,8 @@ def classify_type(cmpt, cmpt_type='unknown'):
         str: A classification of the component type
     """
 
+    cmpt_type = 'general'
+
     # Define HTML references (sets to `None` if it doesn't exist)
     h2 = cmpt.find('h2')
     h3 = cmpt.find('h3')
