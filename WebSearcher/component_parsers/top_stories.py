@@ -1,3 +1,4 @@
+import pdb
 def parse_top_stories(cmpt, ctype='top_stories'):
     """Parse a "Top Stories" component
 
@@ -16,7 +17,8 @@ def parse_top_stories(cmpt, ctype='top_stories'):
     if subs:
         return [parse_top_story(sub, ctype, sub_rank) for sub_rank, sub in enumerate(subs)]
     else:
-        subs = cmpt.find('div', {'class':'qmv19b'}).children
+        subs = []
+        subs = cmpt.find('div', {'class':'aUSklf'}).find_all('div', {'class': 'MkXWrd'})
         return [parse_top_story(sub, ctype, sub_rank) for sub_rank, sub in enumerate(subs)]
 
 

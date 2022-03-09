@@ -36,7 +36,7 @@ def defaultParser(cmpt_type):
         return [parsed]
     return defaultDF
 
-
+import pdb
 def extract_results_column(soup):
     """Extract SERP components
     
@@ -47,13 +47,24 @@ def extract_results_column(soup):
         list: a list of HTML result components
     """
     # Check if layout contains left side bar
+
+    #pdb.set_trace()
     left_side_bar = soup.find('div', {'class': 'OeVqAd'})
 
     if not left_side_bar:
         # Extract results from single div
         rso = soup.find('div', {'id':'rso'})
         drop_tags = {'script', 'style', None}
-        column = [('main', c) for c in rso.children if c.name not in drop_tags]
+        column = []
+        for child in rso.children:
+            #pdb.set_trace()
+            if child.name in drop_tags: continue
+            if child.find('div', {'class':'g'}):
+                column.append(('main', child.find('div', {'class': 'g'})))
+            else:
+                column.append(('main', child))
+
+        #column = [('main', c) for c in rso.children if c.name not in drop_tags]
 
     else:
         # Extract results from two div sections
@@ -164,6 +175,8 @@ def parse_component(cmpt, cmpt_type='', cmpt_rank=0):
     Returns:
         dict: The parsed results and/or subresults
     """
+    #pdb.set_trace()
+
     # Classify Component
     cmpt_type = cmpt_type if cmpt_type else classify_type(cmpt)
     assert cmpt_type, 'Null component type'

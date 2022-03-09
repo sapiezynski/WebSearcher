@@ -33,6 +33,8 @@ h3_matches = {
     "Related searches": "searches_related",
 }
 
+import pdb
+
 def classify_type(cmpt, cmpt_type='unknown'):
     """Component classifier
     
@@ -103,7 +105,7 @@ def classify_type(cmpt, cmpt_type='unknown'):
 
     # Check if component is only of class 'g'
     if 'class' in cmpt.attrs:
-        if cmpt.attrs['class'] == ['g']:
+        if cmpt.attrs['class'] == ['g'] or cmpt.attrs['class'] == ['g', 'tF2Cxc']:
             cmpt_type = 'general'
 
     if 'class' in cmpt.attrs.keys() and cmpt.attrs['class'] == ['g', 'kno-kp', 'mnr-c', 'g-blk']:

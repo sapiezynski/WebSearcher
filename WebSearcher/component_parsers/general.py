@@ -13,12 +13,15 @@ def parse_general_results(cmpt):
     Returns:
         list : list of parsed subcomponent dictionaries
     """
-
+    #pdb.set_trace()
     # Legacy compatibility
     subs = cmpt.find_all('div', {'class':'g'})
     subs = subs if subs else [cmpt] 
     
     return [parse_general_result(sub, sub_rank) for sub_rank, sub in enumerate(subs)]
+
+
+import pdb
 
 def parse_general_result(sub, sub_rank=0):
     """Parse a general subcomponent
@@ -33,7 +36,7 @@ def parse_general_result(sub, sub_rank=0):
         'type': 'general', 
         'sub_rank': sub_rank
     }
-
+    #pdb.set_trace()
     # Get title
     # title_div = sub.find('h3').find('a')
     title_div1 = sub.find('div', {'class':'rc'})
