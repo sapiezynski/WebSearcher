@@ -56,15 +56,8 @@ def extract_results_column(soup):
         rso = soup.find('div', {'id':'rso'})
         drop_tags = {'script', 'style', None}
         column = []
-        for child in rso.children:
-            #pdb.set_trace()
-            if child.name in drop_tags: continue
-            if child.find('div', {'class':'g'}):
-                column.append(('main', child.find('div', {'class': 'g'})))
-            else:
-                column.append(('main', child))
 
-        #column = [('main', c) for c in rso.children if c.name not in drop_tags]
+        column = [('main', c) for c in rso.children if c.name not in drop_tags]
 
     else:
         # Extract results from two div sections
@@ -178,6 +171,7 @@ def parse_component(cmpt, cmpt_type='', cmpt_rank=0):
     #pdb.set_trace()
 
     # Classify Component
+
     cmpt_type = cmpt_type if cmpt_type else classify_type(cmpt)
     assert cmpt_type, 'Null component type'
 
